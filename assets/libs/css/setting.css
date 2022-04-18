@@ -1,0 +1,98 @@
+.Profile-SideBar    {
+    padding: 0;
+}
+.tabHiden .tab-nav{
+    display: flex;
+    flex-direction: column;
+}
+.tabHiden .tab-nav li i{
+    margin-right: 10px;
+}
+h3{
+    margin: 0;
+}
+#Profile{
+    box-shadow: 0 0 40px rgb(0 0 0 / 4%);
+    padding: 10px;
+}
+.In4{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.In4 i{
+    font-size: 40px;
+    margin-right: 10px;
+}
+.In4 .namein4{
+    display: flex;
+    flex-direction: column;
+}
+.In4 .namein4 span{
+    font-size: 12px;
+}
+.item-in4{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    line-height: 1;
+    align-items: center;
+}
+.item-in4>span{
+    width: 24%;
+    height: 15px;
+    font-size: 15px;
+    color: rgba(85,85,85,.8);
+    text-align: right;
+    margin-right: 10px;
+}
+.item-in4 label{
+    margin-bottom: 0;
+    margin-right: 15px;
+    font-size: 15px;
+    align-items: center;
+}
+.item-in4 input[type="text"],
+.item-in4 input[type="email"],
+.item-in4 input[type="tel"],
+.item-in4 input[type="password"]
+{
+    width: calc(100% - 300px);
+    height: 40px;
+    border: solid 1px #e1e1e1;
+    border-radius: 2px;
+    padding: 0 5px;
+}
+.item-in4 .select1{
+    width: calc(100% - 300px);
+    height: 40px;
+    border: solid 1px #e1e1e1;
+}
+.item-in4 input[type="button"],
+.DonHang input[type="button"]{
+    font-size: 15px;
+    color: #fff;
+    background-color: rgb(245, 67, 67);
+    width: 180px;
+    line-height: 40px;
+    border: 0px;
+}
+
+.navDH{
+    display: flex;
+    justify-content: space-between;
+}
+.DonHang .ImgGioHang{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 3;
+    justify-content: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.DonHang .ImgGioHang img{
+    width: 187px;
+    height: 164px;
+}

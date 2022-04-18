@@ -6,10 +6,14 @@ include_once '../utils/MySQLUtils.php';
 include_once '../model/User.php';
 include_once '../utils/mail.php';
 
-class UserController {
+class UserController
+{
 
-    public function __construct($action) {
+    public function __construct($action)
+    {
         $valid = new VhuValidate();
+        $mySQLCon = new MySQLUtils();
+
         switch ($action) {
             case "login":
                 $username = $_POST["username_login"];
@@ -19,7 +23,7 @@ class UserController {
                     $arr_param = array("username" => $username);
                     $user = new User("", "", "", "", "", "", "");
                     $userInfo = $user->getUser($arr_param);
-                    $_SESSION['account_id']= $userInfo[0]['id'];
+                    $_SESSION['account_id'] = $userInfo[0]['id'];
                     header("Location: ../view/index.php");
                 }
                 break;
@@ -27,24 +31,21 @@ class UserController {
                 $account_id = $_POST["account_id"];
                 $car_id = $_POST['car_id'];
                 $money = $_POST['moneycart'];
-                $time = time();
-                $time += 86400;
-                $time =date("Y-m-d",$time);
-                $mySQLCon = new MySQLUtils();
                 $mySQLCon->connect();
-                
-                if ($account_id== "") {
+
+                if ($account_id == "") {
                     header('Location: ../view/signup.php');
-                }
-                else{
-                    $sql = 'INSERT INTO `order` (`order_date`, `conform_order_date`, `staff_id`, `customer_id`) values(:order_date, :conform_order_date, 1, :customer_id)';
-                    $arr_param = array("order_date" => $time, "conform_order_date" => $time, "customer_id" => $account_id);
-                    $mySQLCon->insertData($sql, $arr_param); 
-                    $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id='.$account_id.' order by id DESC LIMIT 1;';
+                } else {
+                    $sql = 'INSERT INTO `order` (`staff_id`, `customer_id`) values( 1, :customer_id)';
+                    $arr_param = array("customer_id" => $account_id);
+                    $mySQLCon->insertData($sql, $arr_param);
+
+                    $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
                     $order_id = $mySQLCon->getAllData($sqlID);
-                    $sql = "INSERT INTO order_detail(car_id,order_id,total_price) value (:car_id,:order_id,:total_price)"; 
-                    $arr = array("car_id" => $car_id,"order_id"=>$order_id[0]['id'], "total_price" => $money);
-                    $mySQLCon->insertData($sql, $arr); 
+
+                    $sql = "INSERT INTO order_detail(car_id,order_id,total_price) value (:car_id,:order_id,:total_price)";
+                    $arr = array("car_id" => $car_id, "order_id" => $order_id[0]['id'], "total_price" => $money);
+                    $mySQLCon->insertData($sql, $arr);
                     header('Location: ../view/index.php');
                 }
                 break;
@@ -57,28 +58,25 @@ class UserController {
                 if ($user->exitsUser($username)) {
                     include '../view/signup.php';
                     echo "<script type='text/javascript'>alert('Tài khoản bị trùng');</script>";
-                }
-                else if($user->checkpass($password,$Confirm_password)){
+                } else if ($user->checkpass($password, $Confirm_password)) {
                     include '../view/signup.php';
                     echo "<script type='text/javascript'>alert('Vui lòng nhập lại mật khẩu');</script>";
-                }
-                else {
-                    $mySQLCon = new MySQLUtils();
+                } else {
                     $mySQLCon->connect();
                     $password = md5($password);
                     $sql = "INSERT INTO customer (username, email, password) VALUES (:username, :email, :password)";
-                    $arr = array(":username" => $username, ":email" => $email,":password" => $password);
-                    $mySQLCon->insertData($sql,$arr);
-                    if ($valid->checkUserName($username) && $valid->checkUserEmail($email) ) {
+                    $arr = array(":username" => $username, ":email" => $email, ":password" => $password);
+                    $mySQLCon->insertData($sql, $arr);
+                    if ($valid->checkUserName($username) && $valid->checkUserEmail($email)) {
                         if (!isset($_SESSION)) {
                             session_start();
                         }
-                        $_SESSION['is_login']=true;
-                        $_SESSION['username_login']= $username;
+                        $_SESSION['is_login'] = true;
+                        $_SESSION['username_login'] = $username;
                         $arr_param = array("username" => $username);
                         $user = new User("", "", "", "", "", "", "");
                         $userInfo = $user->getUser($arr_param);
-                        echo $_SESSION['account_id']= $userInfo[0]['id'];
+                        echo $_SESSION['account_id'] = $userInfo[0]['id'];
                         header("Location: ../view/index.php");
                     } else {
                         header("Location: ../view/signup.php");
@@ -90,7 +88,7 @@ class UserController {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
-                $_SESSION["car_id"]= $id;
+                $_SESSION["car_id"] = $id;
                 header("Location: ../view/detail.php");
                 break;
 
@@ -98,18 +96,17 @@ class UserController {
                 $account_id  = $_GET["account_id"];
                 $car_id = $_GET['car'];
                 $like = $_GET['like'];
-                $mySQLCon = new MySQLUtils();
                 $mySQLCon->connect();
                 if ($like == 1) {
-                    $sql = "DELETE FROM car_like WHERE customer_id = :account_id and car_id=:car_id"; 
-                    $arr_param = array("account_id" => $account_id, "car_id"=>$car_id);
+                    $sql = "DELETE FROM car_like WHERE customer_id = :account_id and car_id=:car_id";
+                    $arr_param = array("account_id" => $account_id, "car_id" => $car_id);
                     $mySQLCon->deleteData($sql, $arr_param);
                     $mySQLCon->disconnect();
-                }else {
-                    $sql = "INSERT INTO car_like(customer_id,car_id,status) values (:account_id,  :car_id,:status)"; 
-                    $arr_param = array("account_id" => $account_id, "car_id"=>$car_id, "status"=>1);
+                } else {
+                    $sql = "INSERT INTO car_like(customer_id,car_id,status) values (:account_id,  :car_id,:status)";
+                    $arr_param = array("account_id" => $account_id, "car_id" => $car_id, "status" => 1);
                     $mySQLCon->insertData($sql, $arr_param);
-                    $mySQLCon->disconnect();  
+                    $mySQLCon->disconnect();
                 }
                 header("Location: ../view/detail.php");
                 break;
@@ -119,7 +116,7 @@ class UserController {
                 $subject = $_POST['subject'];
                 $message = $_POST['message'];
                 $mail = new MailSend();
-                $mail->mailsend($email,$name,$subject,$message);
+                $mail->mailsend($email, $name, $subject, $message);
                 header('Location: ../view/index.php');
                 break;
             case "logout":
@@ -128,7 +125,7 @@ class UserController {
                 }
                 session_unset();
                 session_destroy();
-                header("Location:../controller/menucontroller.php");
+                header("Location:../view/index.php");
                 break;
             default:
                 include '../view/index.php';
@@ -136,7 +133,8 @@ class UserController {
         }
     }
 
-    private function isLogin() {
+    private function isLogin()
+    {
         if (!isset($_SESSION)) {
             session_start();
             if ($_SESSION["is_login"]) {
@@ -145,7 +143,6 @@ class UserController {
         }
         return false;
     }
-
 }
 
 $action = "";
@@ -157,4 +154,3 @@ if (isset($_POST["useraction"])) {
 }
 
 $userController = new UserController($action);
-?>

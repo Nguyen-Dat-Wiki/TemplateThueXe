@@ -3,7 +3,7 @@
 
 <head>
     <?php
-        include_once '../layouts/header.php';
+    include_once '../layouts/header.php';
     ?>
     <title>CAR RENTAL - nền tảng thuê xe</title>
 
@@ -26,16 +26,16 @@
     <div class="banner header-text">
         <div class="owl-banner owl-carousel">
             <?php
-             $dirname = "../assets/img/";
-             $images = glob($dirname."banner*.jpg");
-             foreach($images as $image) {
-                echo '<div class="banner-item-01" style="background-image: url('.$image.');">';
+            $dirname = "../assets/img/";
+            $images = glob($dirname . "banner*.jpg");
+            foreach ($images as $image) {
+                echo '<div class="banner-item-01" style="background-image: url(' . $image . ');">';
                 echo ' <div class="text-content">';
                 echo ' </div>';
                 echo '</div>';
-                }
+            }
 
-         ?>
+            ?>
 
         </div>
     </div>
@@ -53,26 +53,23 @@
                 <div class="cards col-md-12">
                     <!-- select data  -->
                     <?php
-                        include "../utils/MySQLUtils.php";
-                        $mySQLCon = new MySQLUtils();
-                        $mySQLCon->connect();
-                        $sql = "SELECT * from car,car_detail where car.id = car_detail.car_id order by time_created DESC LIMIT 3 ";
-                        $select = $mySQLCon->getAllData($sql);
-                        $i=0; 
-                        foreach ($select as $row) {
-                            if($row["state"]== '0'){
-                                echo '<div class="card col-md-4 ">';
-                                echo '    <div class="product-item">';
-                                echo '        <a href="../controller/usercontroller.php?action=detail&id='.$row["id"].'" ><img class="img-product" src="'.$row["car_img"].'" alt="..."></a>';
-                                echo '        <div class="card-top">';
-                                echo '            <h3 class="card-title" style="text-align: center;"><a href=../controller/usercontroller.php?action=detail&'.$row["id"].' style="color: black;">'.$row["car_name"].'</a></h3>';
-                                echo '        </div>';
-                                echo '        <h6 class="card-user"><small>Từ </small> <span>' . $row["price"].'.000 / ngày </span></h6>';
-                                echo '        <p class="card-detail">'.$row["description"].'</p>';
-                                echo '    </div>';
-                                echo '</div>';
-                            }
+                    include "../model/product.php";
+                    $product = new Product();
+                    $select = $product->selectDataLimit();
+                    foreach ($select as $row) {
+                        if ($row["state"] == '0') {
+                            echo '<div class="card col-md-4 ">';
+                            echo '    <div class="product-item">';
+                            echo '        <a href="../controller/usercontroller.php?action=detail&id=' . $row["id"] . '" ><img class="img-product" src="' . $row["car_img"] . '" alt="..."></a>';
+                            echo '        <div class="card-top">';
+                            echo '            <h3 class="card-title" style="text-align: center;"><a href=../controller/usercontroller.php?action=detail&' . $row["id"] . ' style="color: black;">' . $row["car_name"] . '</a></h3>';
+                            echo '        </div>';
+                            echo '        <h6 class="card-user"><small>Từ </small> <span>' . $row["price"] . '.000 / ngày </span></h6>';
+                            echo '        <p class="card-detail">' . $row["description"] . '</p>';
+                            echo '    </div>';
+                            echo '</div>';
                         }
+                    }
                     ?>
 
                 </div>
@@ -134,8 +131,7 @@
 
                 <div class="col-lg-4 col-md-6">
                     <div class="service-item">
-                        <a href="#" class="services-item-image"><img src="../assets/img/step1.webp" class="img-fluid"
-                                alt=""></a>
+                        <a href="#" class="services-item-image"><img src="../assets/img/step1.webp" class="img-fluid" alt=""></a>
 
                         <div class="down-content">
                             <h4>Đặt xe</h4>
@@ -147,8 +143,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-item">
-                        <a href="#" class="services-item-image"><img src="../assets/img/step2.webp" class="img-fluid"
-                                alt=""></a>
+                        <a href="#" class="services-item-image"><img src="../assets/img/step2.webp" class="img-fluid" alt=""></a>
 
                         <div class="down-content">
                             <h4>Nhận xe</h4>
@@ -159,8 +154,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-item">
-                        <a href="#" class="services-item-image"><img src="../assets/img/step3.webp" class="img-fluid"
-                                alt=""></a>
+                        <a href="#" class="services-item-image"><img src="../assets/img/step3.webp" class="img-fluid" alt=""></a>
 
                         <div class="down-content">
                             <h4>Tận hưởng</h4>
@@ -186,14 +180,14 @@
                 <div class="col-md-12">
                     <div class="owl-clients owl-carousel text-center">
                         <?php
-                            $dirname = "../assets/img/";
-                            $images = glob($dirname."hang*.png");
-                            echo $image[0];
-                            foreach($images as $image) {
-                                echo ' <div class="service-item">';
-                                echo '     <img src="'.$image.'" alt="">';
-                                echo ' </div>';
-                            }
+                        $dirname = "../assets/img/";
+                        $images = glob($dirname . "hang*.png");
+                        echo $image[0];
+                        foreach ($images as $image) {
+                            echo ' <div class="service-item">';
+                            echo '     <img src="' . $image . '" alt="">';
+                            echo ' </div>';
+                        }
                         ?>
                     </div>
                 </div>
@@ -206,8 +200,8 @@
     <!-- footer -->
 
     <?php
-        include_once '../layouts/footer.php';
-        include_once '../layouts/js.php';
+    include_once '../layouts/footer.php';
+    include_once '../layouts/js.php';
     ?>
 
 
