@@ -1,0 +1,286 @@
+.cards {
+    --spacing: 15px;
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.card-top {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-user,
+.info-card,
+.card-bottom {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+
+/* ------------- product --------------- */
+
+.card {
+    border-radius: 5px;
+    overflow: hidden;
+    border: 0px;
+}
+
+.product-item .img-product {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+
+/* .card:hover {
+    transition: 0.4s;
+    transform: scale(1.03);
+} */
+
+
+/* ------- Title  --------- */
+
+.card-title {
+    font-weight: 500;
+    margin: 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    font-size: 15px;
+}
+
+
+/* ------- Giá tiền --------- */
+
+.card-user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-user span {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(189, 76, 76);
+}
+
+.card-user small {
+    font-size: 14px;
+    color: gray;
+    padding-right: 4px;
+}
+
+.card-detail {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    font-size: 14px;
+    margin-left: 9px;
+    color: gray;
+    padding: 0 10px;
+    margin: 5px;
+}
+
+.book-car {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.product-item .likeHeart {
+    position: absolute;
+    z-index: 99;
+    margin: 10px;
+    right: 0;
+    border: 0px;
+    outline: 0;
+    cursor: pointer;
+    color: white!important;
+    background-color: rgba(0, 0, 0, 0.01);
+    font-size: 22px;
+}
+
+.product-item .likeHearted {
+    position: absolute;
+    z-index: 99;
+    margin: 10px;
+    right: 0;
+    border: 0px;
+    outline: 0;
+    cursor: pointer;
+    color: red!important;
+    background-color: rgba(0, 0, 0, 0.01);
+    font-size: 22px;
+}
+
+.footer {
+    padding: 0;
+}
+
+.email-feedback {
+    text-align: center;
+    background-color: rgb(27, 24, 24);
+    color: #fff;
+    padding: 25px 0;
+}
+
+.input-email {
+    display: flex;
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+
+/* ------- footer feedback ------------ */
+
+.feed-back {
+    margin: 25px 0;
+}
+
+.feed-back h5 {
+    border-bottom: 2px solid red;
+    font-weight: bold;
+}
+
+.feed-back .nav li {
+    margin-left: -15px;
+}
+
+
+/* ------------- footer info công ty ------------ */
+
+.info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgb(61, 49, 49);
+    background-color: rgb(27, 24, 24);
+    color: #fff;
+}
+
+.list-unstyled {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.Product img {
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+
+.vehicle-spec {
+    display: flex;
+    align-items: center;
+}
+
+.list-style {
+    padding: 4px;
+    margin: 0px 20px;
+    list-style-type: disc;
+}
+
+.fa-star {
+    color: rgb(240, 240, 74);
+    cursor: pointer;
+}
+
+.fa-star:last-child {
+    color: black;
+}
+
+#dichvu1,
+#dichvu2,
+.price-row,
+.price-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+#dichvu1 span,
+#dichvu2 span {
+    margin-top: 5px;
+}
+
+.btn-clickover {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.btn-like {
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.btn-like:hover {
+    transition: 0.4s;
+    background-color: rgb(130, 182, 250);
+}
+
+.liked {
+    background-color: red;
+    transition: 0.4s;
+}
+
+.detail-page,
+.detail_car {
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: rgb(238, 238, 238);
+}
+
+#valuemoney {
+    border: 0px;
+    background-color: rgb(238, 238, 238);
+    width: 80px;
+    font-size: 18px;
+}
+
+.fa-circle-question {
+    cursor: pointer;
+}
+
+.button.active {
+    background-color: red;
+}
+
+.form--hidden {
+    display: none;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+.linkChose {
+    margin-top: 15px;
+}
+
+.link li {
+    margin: 10px 3px;
+    font-size: 15px;
+}
+
+.link li a {
+    color: rgb(29, 22, 22);
+    font-weight: 550;
+}
