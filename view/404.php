@@ -20,7 +20,7 @@
     <div id="rocket" style="background-image: url(../assets/img/rocket.png);"></div>
     <hgroup>
         <h1>Page Not Found</h1>
-        <h2>We couldn't find what you were looking for, please check your route again !!!</h2>
+        <h2>We couldn't find r, please check your route again !!!</h2>
     </hgroup>
 
 </body>
