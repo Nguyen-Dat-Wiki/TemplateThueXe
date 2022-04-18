@@ -1,15 +1,15 @@
-<!-- <div id="preloader">
+<div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
             <div></div>
         </div>
     </div>
- -->
+
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="../controller/usercontroller.php">
+            <a class="navbar-brand" href="../view/inedx.phphp">
                 <h2>Car Rental <em>Website</em></h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -19,7 +19,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../controller/usercontroller.php">Trang chủ
+                        <a class="nav-link active" href="../view/index.php">Trang chủ
                         </a>
                     </li>
 
