@@ -36,7 +36,7 @@ class UserController
                 if ($account_id == "") {
                     header('Location: ../view/signup.php');
                 } else {
-                    $sql = 'INSERT INTO `order` (`staff_id`, `customer_id`) values( 1, :customer_id)';
+                    $sql = 'INSERT INTO `order` ( `customer_id`) values(:customer_id)';
                     $arr_param = array("customer_id" => $account_id);
                     $mySQLCon->insertData($sql, $arr_param);
 
