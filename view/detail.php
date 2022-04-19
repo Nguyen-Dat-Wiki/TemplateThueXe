@@ -336,14 +336,15 @@ $resu = $product->selectDetail($_SESSION['car_id']);
                                             <span class="price-label">Tổng</span>
                                             <<<<<<< HEAD <span class="price-value"><?php
                                                                                     $tong =  $resu[0]['price'] + $gia2 + $gia3;
-                                                                                    echo '' . number_format($tong) . '.000'; ?>&nbsp;đ</span>
+                                                                                    $tong= number_format($tong);
+                                                                                    echo '' . $tong  . '.000'; ?>&nbsp;đ</span>
                                                 =======
                                                 <span class="price-value"><?php
                                                                             $tong =  $gia + $gia2 + $gia3;
-                                                                            $format_number_1 = number_format($tong);
-                                                                            echo '' . $format_number_1 . '.000'; ?>&nbsp;đ</span>
+                                                                            $tong= number_format($tong);
+                                                                            echo '' . $tong. '.000'; ?>&nbsp;đ</span>
                                                 >>>>>>> 3fee3d45eec1961aa05f07898e571ddbe3f2526d
-                                                <input class="price-value" hidden type="text" id="valuemoney" name="moneycart" value="<?php echo  $format_number_1; ?>">
+                                                <input class="price-value" hidden type="text" id="valuemoney" name="moneycart" value="<?php echo  $tong; ?>">
                                                 <input type="text" hidden name="car_id" value="<?php echo $_SESSION['car_id'] ?>">
                                                 <input type="text" hidden name="account_id" value="<?php echo (isset($_SESSION['account_id'])) ? $_SESSION['account_id'] : ""; ?>">
                                         </div>
