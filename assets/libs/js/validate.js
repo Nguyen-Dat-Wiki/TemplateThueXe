@@ -67,4 +67,27 @@ $(document).ready(function() {
             }
         }
     });
+
+    $("#password").validate({
+        rules: {
+            passnew: {
+                required: true,
+                minlength: 7,
+                maxlength: 100
+            },
+            checkpassnew: {
+                required: true,
+                minlength: 7,
+                maxlength: 100
+            }
+        },
+        messages: {
+            passnew: {
+                required: "Mật khẩu chưa đủ mạnh"
+            },
+            checkpassnew: {
+                required: "Mật khẩu chưa đủ mạnh"
+            }
+        }
+    });
 });
