@@ -333,21 +333,18 @@ $resu = $product->selectDetail($_SESSION['car_id']);
                                     <form action="../controller/usercontroller.php" method="POST">
                                         <hr class="mt-4">
                                         <div class="price-row mt-1">
-                                            <span class="price-label">Tổng</span>
-                                            <<<<<<< HEAD <span class="price-value"><?php
-                                                                                    $tong =  $resu[0]['price'] + $gia2 + $gia3;
-                                                                                    $tong= number_format($tong);
-                                                                                    echo '' . $tong  . '.000'; ?>&nbsp;đ</span>
-                                                =======
-                                                <span class="price-value"><?php
-                                                                            $tong =  $gia + $gia2 + $gia3;
-                                                                            $tong= number_format($tong);
-                                                                            echo '' . $tong. '.000'; ?>&nbsp;đ</span>
-                                                >>>>>>> 3fee3d45eec1961aa05f07898e571ddbe3f2526d
-                                                <input class="price-value" hidden type="text" id="valuemoney" name="moneycart" value="<?php echo  $tong; ?>">
-                                                <input type="text" hidden name="car_id" value="<?php echo $_SESSION['car_id'] ?>">
-                                                <input type="text" hidden name="account_id" value="<?php echo (isset($_SESSION['account_id'])) ? $_SESSION['account_id'] : ""; ?>">
-                                        </div>
+                                                    <span class="price-label">Tổng</span>
+                                                    <span   
+                                                        class="price-value"><?php
+                                                            $tong =  $resu[0]['price'] + $gia2 + $gia3;
+                                                            echo ''.number_format($tong).'.000'; ?>&nbsp;đ</span>
+                                                    <input class="price-value" hidden type="text" id="valuemoney"
+                                                        name="moneycart" value="<?php echo  $format_number_1; ?>">
+                                                    <input type="text" hidden name="car_id"
+                                                        value="<?php echo $_SESSION['car_id'] ?>">
+                                                    <input type="text" hidden name="account_id"
+                                                        value="<?php echo (isset($_SESSION['account_id'])) ? $_SESSION['account_id'] : "" ; ?>">
+                                                </div>
                                         <div class="section p-3 mt-3">
                                             <button type="submit" id="<?php echo (isset($_SESSION['account_id']) ? 'booked' : 'book_aleart') ?>" name="useraction" class="mt-2 btn btn-primary btn-block" value="book">Đặt xe</button>
                                             <a class="btn btn-light btn-block" href="../view/product.php">Quay lại</a>
