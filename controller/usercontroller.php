@@ -128,6 +128,7 @@ class UserController
                 header("Location:../view/index.php");
                 break;
             default:
+                $_SESSION["is_login"]= false;
                 include '../view/index.php';
                 break;
         }
