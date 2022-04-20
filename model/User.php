@@ -165,7 +165,7 @@ class User {
             $username = $arrUsers[0]["username"];
             $password = $arrUsers[0]["password"];
 
-            if ($uname == $username && md5($pass) == $password) {
+            if ($uname == $username && $pass == $password) {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
