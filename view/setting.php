@@ -103,51 +103,6 @@
                                     <input type="text">
                                 </div>
                                 <div class="item-in4">
-                                    <span>Tỉnh / Thành Phố</span>
-                                    <select class="select1" name="select">
-                                        <option selected="selected">Thành phố </option>
-                                        <option>Hồ Chí Minh</option>
-                                        <option>Hà Nội</option>
-                                        <option>An giang</option>
-                                        <option>Bà rịa - Vũng tàu</option>
-                                        <option>Bắc Ninh</option>
-                                        <option>Bắc Giang</option>
-                                        <option>Bình Dương</option>
-                                        <option>Bình Phước</option>
-                                        <option>Bình Định</option>
-                                        <option>Bình Thuận</option>
-                                        <option>Bình Thuận</option>
-                                    </select>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Quận / huyện</span>
-                                    <select class="select1" name="select">
-                                        <option selected="selected">Quận huyện </option>
-                                        <option>Quận 1</option>
-                                        <option>Quận 2</option>
-                                        <option>Quận 3</option>
-                                        <option>Quận 4</option>
-                                        <option>Quận 5</option>
-                                        <option>Quận 6</option>
-                                        <option>Quận 7</option>
-                                        <option>Quận 8</option>
-                                        <option>Quận 9</option>
-                                        <option>Quận 10</option>
-                                        <option>Quận 11</option>
-                                        <option>Quận 12</option>
-                                        <option>Quận Thủ đức</option>
-                                        <option>Quận Tân Phú</option>
-                                        <option>Quận Tân Bình</option>
-                                        <option>Quận Phú Thuận</option>
-                                        <option>Quận Phú Thuận</option>
-                                        <option>Quận Gò Vấp</option>
-                                        <option>Quận Bình Thạnh</option>
-                                        <option>Huyện Bình Chánh</option>
-                                        <option>Huyện Nhà Bè</option>
-                                        <option>Huyện Hóc Môn</option>
-                                    </select>
-                                </div>
-                                <div class="item-in4">
                                     <span></span>
                                     <input type="button" value="Cập nhật">
                                 </div>
@@ -176,15 +131,15 @@
                                                 <table class="table">
                                                     <thead>
                                                         <th scope="col">STT</th>
-                                                        <th scope="col">2</th>
-                                                        <th scope="col">3</th>
-                                                        <th scope="col">4</th>
-                                                        <th scope="col">5</th>
-                                                        <th scope="col">6</th>
+                                                        <th scope="col">Username</th>
+                                                        <th scope="col">Order ID</th>
+                                                        <th scope="col">State</th>
+                                                        <th scope="col">Order Date</th>
+                                                        <th scope="col">Conform Date</th>
                                                     </thead>
                                                     <tbody>
                                                         <td>1</td>
-                                                        <td>12342134213weqfsdaf</td>
+                                                        <td><?php echo $_SESSION['account_id']; ?></td>
                                                         <td>ádfasdbvsdfgsefvcv</td>
                                                         <td>zvfvcvzxcvrsfesf</td>
                                                         <td>xcvxzbzrfsdvxzcv</td>

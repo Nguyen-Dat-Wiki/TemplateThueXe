@@ -20,9 +20,6 @@
                     $password = $_POST["password_login"];
                     $user = new User("", "", "", "", "", "", "");
                     if ($user->isUser($username, $password)) {
-                        $arr_param = array("username" => $username);
-                        $userInfo = $user->getUser($arr_param);
-                        $_SESSION['account_id'] = $userInfo[0]['id'];
                         header("Location: ../view/index.php");
                     } else {
                         header('Location: ../view/signup.php');
