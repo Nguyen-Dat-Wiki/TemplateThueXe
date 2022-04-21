@@ -198,7 +198,13 @@ class User {
         }
         return false;
     }
-
+    public function checkpass($pas, $confirm_pas)
+    {
+        if ($pas != $confirm_pas) {
+            return true;
+        }
+        else return false;
+    }
     public function changepass($passnow, $passnew,$checkpassnew, $id)
     {
         $user = array();
