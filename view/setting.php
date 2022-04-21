@@ -3,7 +3,7 @@
 
 <HEAD>
     <?php
-        include '../layouts/header.php';
+    include '../layouts/header.php';
     ?>
 
 
@@ -12,10 +12,9 @@
 
 <body>
     <?php
-        include '../layouts/menu.php';
+    include '../layouts/menu.php';
     ?>
-    <div class="page-heading about-heading header-text"
-        style="background-image: url(../assets/img/banner_product.png);">
+    <div class="page-heading about-heading header-text" style="background-image: url(../assets/img/banner_product.png);">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -48,7 +47,7 @@
             <div class="row">
                 <div class="Profile-Form container">
                     <div class="Profile-SideBar col-lg-3">
-                        <div class="tabHiden" >
+                        <div class="tabHiden">
                             <div class="In4">
                                 <i class="fa fa-user-circle"></i>
                                 <div class="namein4">
@@ -58,14 +57,14 @@
                             </div>
                             <ul class="nav nav-tabs tab-nav" role="tablist">
                                 <li role="presentation" class="active"><a href="#Profile" role="tab" data-toggle="tab"> <i class="fa fa-user-o"></i> Thông tin tài khoản</a></li>
-                                <li role="presentation"><a href="#DH"  role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
-                                <li role="presentation"><a href="#Seen"  role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
-                                <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab"onclick="Chuyentrang();"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
-                                <li role="presentation"><a href="#MuaSau"  role="tab" data-toggle="tab"onclick="Chuyentrang();"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
-                                <li role="presentation"><a href="#DanhGia"  role="tab" data-toggle="tab"onclick="Chuyentrang();"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
-                                <li role="presentation"><a href="#Commnet"  role="tab" data-toggle="tab"onclick="Chuyentrang();"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
-                                <li role="presentation"><a href="#Change"  role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
-                                <li role="presentation"><a href="#Out"  role="tab" data-toggle="tab"onclick="Out();"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
+                                <li role="presentation"><a href="#DH" role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
+                                <li role="presentation"><a href="#Seen" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
+                                <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
+                                <li role="presentation"><a href="#MuaSau" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
+                                <li role="presentation"><a href="#DanhGia" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
+                                <li role="presentation"><a href="#Commnet" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
+                                <li role="presentation"><a href="#Change" role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
+                                <li role="presentation"><a href="#Out" role="tab" data-toggle="tab" onclick="Out();"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
                             </ul>
                         </div>
                     </div>
@@ -122,7 +121,7 @@
                                 </div>
                                 <div class="item-in4">
                                     <span>Quận / huyện</span>
-                                    <select class="select1" name="select" >
+                                    <select class="select1" name="select">
                                         <option selected="selected">Quận huyện </option>
                                         <option>Quận 1</option>
                                         <option>Quận 2</option>
@@ -152,25 +151,51 @@
                                     <span></span>
                                     <input type="button" value="Cập nhật">
                                 </div>
-                                
+
                             </div>
+                            <?php
+                            include("../model/product.php");
+                            $product = new Product();
+                            ?>
                             <div role="tabpanel" class="tab-pane" id="DH">
                                 <h3>Đơn hàng của tôi</h3>
                                 <hr>
                                 <ul class="nav-tabs nav navDH" role="tablist">
-                                    <li role="presentation" class="active"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
-                                    <li role="presentation"><a href="#Reply"  role="tab" data-toggle="tab">Chờ xác nhận</a></li>
-                                    <li role="presentation"><a href="#Replied"  role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
+                                    <li role="presentation"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
+                                    <li role="presentation"><a href="#Reply" role="tab" data-toggle="tab">Chờ xác nhận</a></li>
+                                    <li role="presentation"><a href="#Replied" role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
                                     <li role="presentation"><a href="#GH" a role="tab" data-toggle="tab">Đang giao</a></li>
-                                    <li role="presentation"><a href="#DaGiao"  role="tab" data-toggle="tab">Đã giao</a></li>
-                                    <li role="presentation"><a href="#Ca"  role="tab" data-toggle="tab">Đã hủy</a></li>
+                                    <li role="presentation"><a href="#DaGiao" role="tab" data-toggle="tab">Đã giao</a></li>
+                                    <li role="presentation"><a href="#Ca" role="tab" data-toggle="tab">Đã hủy</a></li>
                                 </ul>
+
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="All">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
+                                                <table class="table">
+                                                    <thead>
+                                                        <th scope="col">1</th>
+                                                        <th scope="col">2</th>
+                                                        <th scope="col">3</th>
+                                                        <th scope="col">4</th>
+                                                        <th scope="col">5</th>
+                                                        <th scope="col">6</th>
+                                                    </thead>
+                                                    <tbody>
+                                                        <td>1</td>
+                                                        <td>12342134213weqfsdaf</td>
+                                                        <td>ádfasdbvsdfgsefvcv</td>
+                                                        <td>zvfvcvzxcvrsfesf</td>
+                                                        <td>xcvxzbzrfsdvxzcv</td>
+                                                        <td>xvcsfDCxvbvcbxcn</td>
+                                                    </tbody>
+                                                </table>
+                                                <!-- <span>
+                                                    <?php
+                                                    print_r($product->selectDataLimit());
+                                                    ?>
+                                                </span> -->
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
                                         </div>
@@ -178,8 +203,7 @@
                                     <div role="tabpanel" class="tab-pane " id="Reply">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
+                                                <span>Waiting</span>
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
                                         </div>
@@ -187,7 +211,6 @@
                                     <div role="tabpanel" class="tab-pane " id="Replied">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
                                                 <span>Bạn chưa có đơn hàng nào</span>
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
@@ -196,7 +219,6 @@
                                     <div role="tabpanel" class="tab-pane " id="GH">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
                                                 <span>Bạn chưa có đơn hàng nào</span>
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
@@ -205,7 +227,6 @@
                                     <div role="tabpanel" class="tab-pane " id="DaGiao">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
                                                 <span>Bạn chưa có đơn hàng nào</span>
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
@@ -214,7 +235,6 @@
                                     <div role="tabpanel" class="tab-pane " id="Ca">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
                                                 <span>Bạn chưa có đơn hàng nào</span>
                                                 <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
                                             </div>
@@ -222,24 +242,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="Seen"">
+                            <div role="tabpanel" class="tab-pane" id="Seen">
                                 <script>
-                                    function Chuyentrang(){
-                                        window.location="/404.html";
+                                    function Chuyentrang() {
+                                        window.location = " /404.html";
                                     }
                                 </script>
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Liked">
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="MuaSau">
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="DanhGia">
-                            
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Commnet">
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Change">
                                 <h3 sty>Thay đổi mật khẩu</h3>
@@ -267,7 +287,7 @@
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Out">
                                 <script>
-                                    function Out(){
+                                    function Out() {
                                         localStorage.removeItem("username");
                                         localStorage.removeItem("password");
                                         localStorage.removeItem("username1");
@@ -285,11 +305,11 @@
     </div>
 
 
-    <?php 
-        
-            include '../layouts/footer.php';
-            include '../layouts/js.php';
-         ?>
+    <?php
+
+    include '../layouts/footer.php';
+    include '../layouts/js.php';
+    ?>
 
     <script src="../assets/vendor/bootstrap/js/tab.js"></script>
 </body>

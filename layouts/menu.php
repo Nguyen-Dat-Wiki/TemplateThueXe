@@ -9,7 +9,7 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="../view/inedx.phphp">
+            <a class="navbar-brand" href="../view/index.php">
                 <h2>Car Rental <em>Website</em></h2>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thông tin</a>
 
-                        <div class="dropdown-menu"">
+                        <div class="dropdown-menu">
                             <a class=" dropdown-item" href="../view/blog.php">Tin mới</a>
                             <a class="dropdown-item" href="../view/sale.php">Khuyến mãi</a>
                             <a class="dropdown-item" href="../view/testimonials.php">Testimonials</a>
