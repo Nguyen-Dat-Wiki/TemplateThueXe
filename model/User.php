@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -121,9 +120,10 @@ class User {
         $dbCon->disconnect();
         return $arrUser;
     }
+    
 
     public function updateUser($arr_param) {
-        $sql = "UPDATE customer SET email=:email where id = :id";
+        $sql = "UPDATE customer SET password=:password where id = :id";
         $dbCon = new MySQLUtils();
         $dbCon->connect();
         $dbCon->updateData($sql, $arr_param);
@@ -165,7 +165,7 @@ class User {
             $username = $arrUsers[0]["username"];
             $password = $arrUsers[0]["password"];
 
-            if ($uname == $username && md5($pass) == $password) {
+            if ($uname == $username && $pass == $password) {
                 if (!isset($_SESSION)) {
                     session_start();
                 }
@@ -199,12 +199,21 @@ class User {
         return false;
     }
 
-    public function checkpass($pas, $confirm_pas)
+    public function changepass($passnow, $passnew,$checkpassnew, $id)
     {
-        if ($pas != $confirm_pas) {
-            return true;
+        $user = array();
+        $sql = "SELECT password FROM customer where id=:id";
+        $arr_param = array("id" => $id);
+        $user = $this->getUserByUserName($sql, $arr_param);
+        if($user[0]['password'] == $passnow){
+            if($passnew == $checkpassnew){
+                $arr = array("password" => $passnew, "id"=>$id);
+                $this->updateUser($arr);
+                return true;
+            }
+            return false;
         }
-        else return false;
+        return false;
     }
 
 }

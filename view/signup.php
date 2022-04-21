@@ -47,7 +47,7 @@
                             <input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
                         </label>
                     </div>
-                    <button type="submit" name="useraction" value="login" class="btn btn-primary btn-lg btn-block">Sign in</button>
+                    <button type="submit" name="useraction" value="login" class="btn btn-primary btn-lg btn-block">Login</button>
                 </form>
             </div>
             <div class="card-footer bg-white p-0  ">
@@ -70,10 +70,28 @@
                         <input class="form-control form-control-lg" name="username_create" type="text" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="form-group">
+                        <input class="form-control form-control-lg" name="name_create" type="text" placeholder="Fullname">
+                    </div>
+                    <div class="form-group">
                         <input class="form-control form-control-lg" name="email_create" type="email" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <input class="form-control form-control-lg" name="password_create" type="password" placeholder="Password">
+                        <input class="form-control form-control-lg" name="phone_create" type="text" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" name="address_create" type="text" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="gender" checked="" class="custom-control-input" value="nam"><span class="custom-control-label">Nam</span>
+                        </label>
+                        <label class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" name="gender" class="custom-control-input" value="nu"><span class="custom-control-label">Nữ</span>
+                        </label>
+
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control form-control-lg" " name=" password_create" type="password" placeholder="Password">
                     </div>
                     <div class="form-group">
                         <input class="form-control form-control-lg" name="Confirm_password" type="password" placeholder="Confirm Password">

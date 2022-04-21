@@ -37,5 +37,23 @@ class Product{
         $select = $mySQLCon->getAllData($sql);
         return $select;
     }
+
+    public function likeCar_list($account_id){
+        $mySQLCon = new MySQLUtils();
+        $mySQLCon->connect();
+        $sql = "SELECT * from car_like,car,car_detail where car_like.customer_id=$account_id and car_like.car_id = car.id and car.id = car_detail.car_id" ;
+        $select = $mySQLCon->getAllData($sql);
+        return $select;
+    }
+
+    public function getAllUser2($arr = array()) {
+        $sql = "SELECT * FROM customer where id = :id";
+        $user = array();
+        $dbCon = new MySQLUtils();
+        $dbCon->connect();
+        $user = $dbCon->getData($sql, $arr);
+        $dbCon->disconnect();
+        return $user;
+    }
 }
 ?>

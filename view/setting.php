@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <?php
     include '../layouts/menu.php';
     ?>
@@ -19,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="text-content">
-                        <h4> Sản phẩm </h4>
+                        <h4> Cài đặt </h4>
                     </div>
                 </div>
             </div>
@@ -41,22 +42,34 @@
 
         </div>
     </section>
+    <?php
+        include '../model/product.php';
+        $user = new Product();
 
+        $arr = array("id"=>$_SESSION['account_id']);
+        $userAll = $user->getAllUser2($arr);
+    ?>
     <div class="products">
         <div class="container">
             <div class="row">
                 <div class="Profile-Form container">
+<<<<<<< HEAD
                     <div class="Profile-SideBar col-lg-3">
                         <div class="tabHiden">
+=======
+                    <div class="Profile-SideBar col-md-3">
+                        <div class="tabHiden" >
+>>>>>>> 9ac9cba6fee1cf1e85c4b47d5a9323d0bb437526
                             <div class="In4">
                                 <i class="fa fa-user-circle"></i>
                                 <div class="namein4">
                                     <span>Tài khoản của</span>
-                                    <span style="font-weight: 700;font-size: 15px;">Administrator</span>
+                                    <span style="font-weight: 700;font-size: 15px;"><?php echo $userAll[0]['username'] ?></span>
                                 </div>
                             </div>
                             <ul class="nav nav-tabs tab-nav" role="tablist">
                                 <li role="presentation" class="active"><a href="#Profile" role="tab" data-toggle="tab"> <i class="fa fa-user-o"></i> Thông tin tài khoản</a></li>
+<<<<<<< HEAD
                                 <li role="presentation"><a href="#DH" role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
                                 <li role="presentation"><a href="#Seen" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
                                 <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
@@ -65,42 +78,68 @@
                                 <li role="presentation"><a href="#Commnet" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
                                 <li role="presentation"><a href="#Change" role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
                                 <li role="presentation"><a href="#Out" role="tab" data-toggle="tab" onclick="Out();"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
+=======
+                                <li role="presentation"><a href="#DH"  role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
+                                <li role="presentation"><a href="#Seen"  role="tab" data-toggle="tab" ><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
+                                <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
+                                <li role="presentation"><a href="#MuaSau"  role="tab" data-toggle="tab"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
+                                <li role="presentation"><a href="#DanhGia"  role="tab" data-toggle="tab"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
+                                <li role="presentation"><a href="#Commnet"  role="tab" data-toggle="tab"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
+                                <li role="presentation"><a href="#Change"  role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
+                                <li role="presentation"><a href="#Out"  role="tab" data-toggle="tab"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
+>>>>>>> 9ac9cba6fee1cf1e85c4b47d5a9323d0bb437526
                             </ul>
                         </div>
                     </div>
 
-                    <div class="Profile-Main col-lg-9">
+                    <div class="Profile-Main col-md-9">
                         <div class="tab-content">
 
                             <div role="tabpanel" class="tab-pane active" id="Profile">
+                                
                                 <h3>Thông tin tài khoản</h3>
                                 <hr>
                                 <div class="item-in4">
                                     <span>Họ tên</span>
-                                    <input type="text">
+                                    <input type="text" value="<?php echo $userAll[0]['fullname'] ?>" placeholder="">
                                 </div>
                                 <div class="item-in4">
                                     <span>Số điện thoại</span>
-                                    <input type="tel" id="phone" name="phone" placeholder="0123-456-789" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
+                                    <input type="tel" id="phone" name="phone" value="<?php echo $userAll[0]['phonenumber'] ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
                                 </div>
                                 <div class="item-in4">
                                     <span>Email</span>
-                                    <input type="email" name="" id="">
+                                    <input type="email" name="" id="" value="<?php echo $userAll[0]['email'] ?>">
                                 </div>
                                 <div class="item-in4">
                                     <span>Giới tính</span>
-                                    <label for="Nam">
-                                        <input type="radio" id="Nam" name="GioiTinh">
-                                        <span>Nam</span>
-                                    </label>
-                                    <label for="Nu">
-                                        <input type="radio" id="Nu" name="GioiTinh">
-                                        <span>Nữ</span>
-                                    </label>
+                                    <?php
+                                        if($userAll[0]['gender']=='Nam'){
+
+                                            echo '<label for="Nam">';
+                                            echo '    <input type="radio" checked id="Nam" name="GioiTinh">';
+                                            echo '    <span>Nam</span>';
+                                            echo '</label>';
+                                            echo '<label for="Nu">';
+                                            echo '    <input type="radio" id="Nu" name="GioiTinh">';
+                                            echo '    <span>Nữ</span>';
+                                            echo '</label>';
+                                        }
+                                        else {
+                                            echo '<label for="Nam">';
+                                            echo '    <input type="radio"  id="Nam" name="GioiTinh">';
+                                            echo '    <span>Nam</span>';
+                                            echo '</label>';
+                                            echo '<label for="Nu">';
+                                            echo '    <input type="radio" checked id="Nu" name="GioiTinh">';
+                                            echo '    <span>Nữ</span>';
+                                            echo '</label>';
+                                        }
+                                    ?>
                                 </div>
                                 <div class="item-in4">
                                     <span>Địa chỉ</span>
-                                    <input type="text">
+                                    <input type="text" value="<?php echo $userAll[0]['address'] ?>">
                                 </div>
                                 <div class="item-in4">
                                     <span>Tỉnh / Thành Phố</span>
@@ -149,7 +188,7 @@
                                 </div>
                                 <div class="item-in4">
                                     <span></span>
-                                    <input type="button" value="Cập nhật">
+                                    <input type="submit" value="Cập nhật">
                                 </div>
 
                             </div>
@@ -242,6 +281,7 @@
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                             <div role="tabpanel" class="tab-pane" id="Seen">
                                 <script>
                                     function Chuyentrang() {
@@ -251,6 +291,39 @@
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Liked">
 
+=======
+                            <div role="tabpanel" class="tab-pane" id="Seen"">
+                                
+                            </div>
+                            <div role="tabpanel" class="tab-pane " id="Liked">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tên sản phẩm</th>
+                                    <th scope="col">Hình ảnh</th>
+                                    <th scope="col">Giá</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tbodytable">
+                                    <?php
+                                        $account_id = $_SESSION['account_id'];
+                                        $productlistliked = new Product();
+                                        $likedcar = $productlistliked->likeCar_list($account_id);
+                                        foreach ($likedcar as $key =>  $item) {
+                                                echo '<tr>';
+                                                echo '    <td>'.$key++.'</td>';
+                                                echo '    <td>'.$item['car_name'].'</td>';
+                                                echo '    <td ><img src="'.$item['car_img'].'" width="200" height="100" alt=""></td>';
+                                                echo '    <td>'.$item['price'].'.000đ</td>';
+                                                echo '</tr>';
+                                        }
+                                    ?>
+                                </tbody>
+                                </table>
+                                
+                                </table>
+>>>>>>> 9ac9cba6fee1cf1e85c4b47d5a9323d0bb437526
                             </div>
                             <div role="tabpanel" class="tab-pane " id="MuaSau">
 
@@ -264,6 +337,7 @@
                             <div role="tabpanel" class="tab-pane " id="Change">
                                 <h3 sty>Thay đổi mật khẩu</h3>
                                 <hr>
+<<<<<<< HEAD
                                 <div class="item-in4">
                                     <span>Mật khẩu hiện tại</span>
                                     <input type="password" class="pass">
@@ -295,6 +369,27 @@
                                         window.location = "/index.html";
                                     }
                                 </script>
+=======
+                                <form action="../controller/usercontroller.php?action=pass" method="POST" id="password">
+                                    <div class="item-in4">
+                                        <span>Mật khẩu hiện tại</span>
+                                        <input type="password" class="pass" name="passnow" >
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Mật khẩu mới</span>
+                                        <input type="password" class="pass" name="passnew">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Nhập lại mật khẩu mới</span>
+                                        <input type="password" class="pass" name="checkpassnew">
+                                    </div>
+                                    <input type="text" name="account_id" hidden value="<?php echo $_SESSION['account_id'] ?>">
+                                    <div class="item-in4">
+                                        <span></span>
+                                        <input type="submit" value="Đổi mật khẩu" id="changPass">
+                                    </div>
+                                </form>
+>>>>>>> 9ac9cba6fee1cf1e85c4b47d5a9323d0bb437526
                             </div>
                         </div>
                     </div>

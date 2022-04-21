@@ -1,10 +1,10 @@
-<div id="preloader">
-    <div class="jumper">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-</div>
+<!-- <div id="preloader">
+        <div class="jumper">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div> -->
 
 <header class="">
     <nav class="navbar navbar-expand-lg">
@@ -12,7 +12,8 @@
             <a class="navbar-brand" href="../view/index.php">
                 <h2>Car Rental <em>Website</em></h2>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -26,7 +27,8 @@
                     <li class="nav-item"><a class="nav-link" href="../view/product.php">Sản phẩm</a></li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Thông tin</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                            aria-haspopup="true" aria-expanded="false">Thông tin</a>
 
                         <div class="dropdown-menu">
                             <a class=" dropdown-item" href="../view/blog.php">Tin mới</a>
@@ -39,20 +41,22 @@
                     <li class="nav-item"><a class="nav-link" href="../view/connact.php">Liên hệ</a></li>
                     <li class="nav-item dropdown">
                         <?php
-                        if (!isset($_SESSION)) {
-                            session_start();
-                        }
-                        if (isset($_SESSION["is_login"])) {
-                            echo '    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">' . $_SESSION["username_login"] . '</a>';
-                            echo '    <div class="dropdown-menu"">';
-                            echo '        <a class="dropdown-item" href="../view/setting.php">Cài đặt</a>';
-                            echo '        <a class="dropdown-item" href="../controller/usercontroller.php?action=logout">Logout</a>';
-                            echo '    </div>';
-                            echo '</li>';
-                            echo '';
-                        } else {
-                            echo '<a class="nav-link nav-user-img" href="../view/signup.php">SignUp</a>';
-                        }
+                            if(!isset($_SESSION)){
+                                session_start();
+                            }
+                            if (isset($_SESSION["is_login"])) {
+                                if($_SESSION['is_login']){
+                                    echo '    <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">'.$_SESSION["username_login"].'</a>';
+                                    echo '    <div class="dropdown-menu"">';
+                                    echo '        <a class="dropdown-item" href="../view/setting.php">Cài đặt</a>';
+                                    echo '        <a class="dropdown-item" href="../controller/usercontroller.php?action=logout">Logout</a>';
+                                    echo '    </div>';
+                                    echo '</li>';
+                                    echo '';
+                                }
+                            }else{
+                                echo '<a class="nav-link nav-user-img" href="../view/signup.php">SignUp</a>';
+                            }
                         ?>
                     </li>
                 </ul>
