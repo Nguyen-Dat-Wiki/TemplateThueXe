@@ -42,7 +42,7 @@
                         $arr_param = array("customer_id" => $account_id);
                         $mySQLCon->insertData($sql, $arr_param);
 
-                        $sqlID = 'SELECT id from dack_carrent3.order where dack_carrent3.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
+                        $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
                         $order_id = $mySQLCon->getAllData($sqlID);
                         
                         $sql = "INSERT INTO order_detail(car_id,order_id,total_price) values (:car_id,:order_id,:total_price)";
