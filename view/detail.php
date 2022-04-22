@@ -351,11 +351,12 @@
                                                 <div class="price-row mt-1">
                                                     <span class="price-label">Tổng</span>
                                                     <span   
-                                                        class="price-value"><?php
+                                                        class="price-value"><?php   
                                                             $tong =  $resu[0]['price'] + $gia2 + $gia3;
-                                                            echo ''.number_format($tong).'.000'; ?>&nbsp;đ</span>
+                                                            $tonged = number_format($tong);
+                                                            echo ''.$tonged.'.000'; ?>&nbsp;đ</span>
                                                     <input class="price-value" hidden type="text" id="valuemoney"
-                                                        name="moneycart" value="<?php echo  $format_number_1; ?>">
+                                                        name="moneycart" value="<?php echo  $tong ?>">
                                                     <input type="text" hidden name="car_id"
                                                         value="<?php echo $_SESSION['car_id'] ?>">
                                                     <input type="text" hidden name="account_id"
