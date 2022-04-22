@@ -6,11 +6,14 @@
     include_once '../model/User.php';
     include_once '../utils/mail.php';
 
-    class UserController {
+    class UserController
+    {
 
-        public function __construct($action) {
+        public function __construct($action)
+        {
             $valid = new VhuValidate();
             $mySQLCon = new MySQLUtils();
+            $user = new User("", "", "", "", "", "", "");
 
             switch ($action) {
                 case "login":
@@ -20,10 +23,9 @@
                     if ($user->isUser($username, $password)) {
                         $arr_param = array("username" => $username);
                         $userInfo = $user->getUser($arr_param);
-                        $_SESSION['account_id']= $userInfo[0]['id'];
+                        $_SESSION['account_id'] = $userInfo[0]['id'];
                         header("Location: ../view/index.php");
-                    }
-                    else{
+                    } else {
                         header('Location: ../view/signup.php');
                     }
                     break;
@@ -32,20 +34,19 @@
                     $car_id = $_POST['car_id'];
                     $money = $_POST['moneycart'];
                     $mySQLCon->connect();
-                    if ($account_id== "") {
+                    if ($account_id == "") {
                         header('Location: ../view/signup.php');
-                    }
-                    else{
+                    } else {
                         $sql = 'INSERT INTO `order` (`customer_id`) values( :customer_id)';
                         $arr_param = array("customer_id" => $account_id);
-                        $mySQLCon->insertData($sql, $arr_param); 
+                        $mySQLCon->insertData($sql, $arr_param);
 
-                        $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id='.$account_id.' order by id DESC LIMIT 1;';
+                        $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
                         $order_id = $mySQLCon->getAllData($sqlID);
 
-                        $sql = "INSERT INTO order_detail(car_id,order_id,total_price) value (:car_id,:order_id,:total_price)"; 
-                        $arr = array("car_id" => $car_id,"order_id"=>$order_id[0]['id'], "total_price" => $money);
-                        $mySQLCon->insertData($sql, $arr); 
+                        $sql = "INSERT INTO order_detail(car_id,order_id,total_price) value (:car_id,:order_id,:total_price)";
+                        $arr = array("car_id" => $car_id, "order_id" => $order_id[0]['id'], "total_price" => $money);
+                        $mySQLCon->insertData($sql, $arr);
                         header('Location: ../view/index.php');
                     }
                     break;
@@ -62,26 +63,24 @@
                     if ($user->exitsUser($username)) {
                         include '../view/signup.php';
                         echo "<script type='text/javascript'>alert('Tài khoản bị trùng');</script>";
-                    }
-                    else if($user->checkpass($password,$Confirm_password)){
+                    } else if ($user->checkpass($password, $Confirm_password)) {
                         include '../view/signup.php';
                         echo "<script type='text/javascript'>alert('Vui lòng nhập lại mật khẩu');</script>";
-                    }
-                    else {
+                    } else {
                         $mySQLCon->connect();
                         $sql = "INSERT INTO customer (username, email, password,fullname,phonenumber,address,gender) VALUES (:username, :email, :password,:fullname,:phonenumber,:address,:gender)";
-                        $arr = array(":username" => $username, ":email" => $email,":password" => $password,":fullname" => $fullname,":phonenumber" => $phone,":address" => $address,":gender"=> $gender);
-                        $mySQLCon->insertData($sql,$arr);
-                        if ($valid->checkUserName($username) && $valid->checkUserEmail($email) ) {
+                        $arr = array(":username" => $username, ":email" => $email, ":password" => $password, ":fullname" => $fullname, ":phonenumber" => $phone, ":address" => $address, ":gender" => $gender);
+                        $mySQLCon->insertData($sql, $arr);
+                        if ($valid->checkUserName($username) && $valid->checkUserEmail($email)) {
                             if (!isset($_SESSION)) {
                                 session_start();
                             }
-                            $_SESSION['is_login']=true;
-                            $_SESSION['username_login']= $username;
+                            $_SESSION['is_login'] = true;
+                            $_SESSION['username_login'] = $username;
                             $arr_param = array("username" => $username);
                             $user = new User("", "", "", "", "", "", "");
                             $userInfo = $user->getUser($arr_param);
-                            $_SESSION['account_id']= $userInfo[0]['id'];
+                            $_SESSION['account_id'] = $userInfo[0]['id'];
                             header("Location: ../view/index.php");
                         } else {
                             header("Location: ../view/signup.php");
@@ -93,7 +92,7 @@
                     if (!isset($_SESSION)) {
                         session_start();
                     }
-                    $_SESSION["car_id"]= $id;
+                    $_SESSION["car_id"] = $id;
                     header("Location: ../view/detail.php");
                     break;
 
@@ -103,15 +102,15 @@
                     $like = $_GET['like'];
                     $mySQLCon->connect();
                     if ($like == 1) {
-                        $sql = "DELETE FROM car_like WHERE customer_id = :account_id and car_id=:car_id"; 
-                        $arr_param = array("account_id" => $account_id, "car_id"=>$car_id);
+                        $sql = "DELETE FROM car_like WHERE customer_id = :account_id and car_id=:car_id";
+                        $arr_param = array("account_id" => $account_id, "car_id" => $car_id);
                         $mySQLCon->deleteData($sql, $arr_param);
                         $mySQLCon->disconnect();
-                    }else {
-                        $sql = "INSERT INTO car_like(customer_id,car_id,status) values (:account_id,  :car_id,:status)"; 
-                        $arr_param = array("account_id" => $account_id, "car_id"=>$car_id, "status"=>1);
+                    } else {
+                        $sql = "INSERT INTO car_like(customer_id,car_id,status) values (:account_id,  :car_id,:status)";
+                        $arr_param = array("account_id" => $account_id, "car_id" => $car_id, "status" => 1);
                         $mySQLCon->insertData($sql, $arr_param);
-                        $mySQLCon->disconnect();  
+                        $mySQLCon->disconnect();
                     }
                     header("Location: ../view/detail.php");
                     break;
@@ -124,9 +123,9 @@
 
                     $user = new User("", "", "", "", "", "", "");
                     $account = $user->changepass($passnow, $passnew, $checkpassnew, $id);
-                    if($account){
+                    if ($account) {
                         header('Location: ../view/signup.php');
-                    }else {
+                    } else {
                         header('Location: ../view/setting.php');
                     }
                     break;
@@ -136,7 +135,7 @@
                     $subject = $_POST['subject'];
                     $message = $_POST['message'];
                     $mail = new MailSend();
-                    $mail->mailsend($email,$name,$subject,$message);
+                    $mail->mailsend($email, $name, $subject, $message);
                     header('Location: ../view/index.php');
                     break;
                 case "logout":
@@ -147,6 +146,26 @@
                     session_destroy();
                     header("Location:../view/index.php");
                     break;
+                case "updateCustomer":
+                    $fullname = $_POST['fullname'];
+                    $email = $_POST['email'];
+                    $phonenumber = $_POST['phonenumber'];
+                    $gender = $_POST['GioiTinh'];
+                    $address = $_POST['address'];
+
+                    if (!isset($_SESSION)) {
+                        session_start();
+                    }
+                    if (isset($_SESSION["is_login"])) {
+                        // key => value
+                        $arr = ["fullname" => $fullname, "email" => $email, "phonenumber" => $phonenumber, "gender" => $gender, "address" => $address, "id" => $_SESSION['account_id']];
+
+                        $user->updateInfoUser($arr);
+                        // de quay lai trang setting    
+                        header("Location: ../view/setting.php");
+                    }
+
+                    break;
                 default:
                     $_SESSION["is_login"] = false;
                     include '../view/index.php';
@@ -154,7 +173,8 @@
             }
         }
 
-        private function isLogin() {
+        private function isLogin()
+        {
             if (!isset($_SESSION)) {
                 session_start();
                 if ($_SESSION["is_login"]) {
@@ -163,7 +183,6 @@
             }
             return false;
         }
-
     }
 
     $action = "";

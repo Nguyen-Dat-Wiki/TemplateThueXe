@@ -44,10 +44,14 @@
     </section>
     <?php
     include '../model/product.php';
+    include '../model/order.php';
     $user = new Product();
+    $order = new Order();
 
     $arr = array("id" => $_SESSION['account_id']);
     $userAll = $user->getAllUser2($arr);
+
+
     ?>
     <div class="products">
         <div class="container">
@@ -83,97 +87,53 @@
 
                                 <h3>Thông tin tài khoản</h3>
                                 <hr>
-                                <div class="item-in4">
-                                    <span>Họ tên</span>
-                                    <input type="text" value="<?php echo $userAll[0]['fullname'] ?>" placeholder="">
-                                </div>
-                                <div class="item-in4">
-                                    <span>Số điện thoại</span>
-                                    <input type="tel" id="phone" name="phone" value="<?php echo $userAll[0]['phonenumber'] ?>" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" required>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Email</span>
-                                    <input type="email" name="" id="" value="<?php echo $userAll[0]['email'] ?>">
-                                </div>
-                                <div class="item-in4">
-                                    <span>Giới tính</span>
-                                    <?php
-                                    if ($userAll[0]['gender'] == 'Nam') {
+                                <form action="../controller/usercontroller.php" method="post">
+                                    <div class="item-in4">
+                                        <span>Họ tên</span>
+                                        <input type="text" name="fullname" value="<?php echo $userAll[0]['fullname'] ?>" placeholder="">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Số điện thoại</span>
+                                        <input type="text" name="phonenumber" id="phone" name="phone" value="<?php echo $userAll[0]['phonenumber'] ?>" required>
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Email</span>
+                                        <input type="email" name="email" id="" value="<?php echo $userAll[0]['email'] ?>">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Giới tính</span>
+                                        <?php
+                                        if ($userAll[0]['gender'] == 'nam') {
 
-                                        echo '<label for="Nam">';
-                                        echo '    <input type="radio" checked id="Nam" name="GioiTinh">';
-                                        echo '    <span>Nam</span>';
-                                        echo '</label>';
-                                        echo '<label for="Nu">';
-                                        echo '    <input type="radio" id="Nu" name="GioiTinh">';
-                                        echo '    <span>Nữ</span>';
-                                        echo '</label>';
-                                    } else {
-                                        echo '<label for="Nam">';
-                                        echo '    <input type="radio"  id="Nam" name="GioiTinh">';
-                                        echo '    <span>Nam</span>';
-                                        echo '</label>';
-                                        echo '<label for="Nu">';
-                                        echo '    <input type="radio" checked id="Nu" name="GioiTinh">';
-                                        echo '    <span>Nữ</span>';
-                                        echo '</label>';
-                                    }
-                                    ?>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Địa chỉ</span>
-                                    <input type="text" value="<?php echo $userAll[0]['address'] ?>">
-                                </div>
-                                <div class="item-in4">
-                                    <span>Tỉnh / Thành Phố</span>
-                                    <select class="select1" name="select">
-                                        <option selected="selected">Thành phố </option>
-                                        <option>Hồ Chí Minh</option>
-                                        <option>Hà Nội</option>
-                                        <option>An giang</option>
-                                        <option>Bà rịa - Vũng tàu</option>
-                                        <option>Bắc Ninh</option>
-                                        <option>Bắc Giang</option>
-                                        <option>Bình Dương</option>
-                                        <option>Bình Phước</option>
-                                        <option>Bình Định</option>
-                                        <option>Bình Thuận</option>
-                                        <option>Bình Thuận</option>
-                                    </select>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Quận / huyện</span>
-                                    <select class="select1" name="select">
-                                        <option selected="selected">Quận huyện </option>
-                                        <option>Quận 1</option>
-                                        <option>Quận 2</option>
-                                        <option>Quận 3</option>
-                                        <option>Quận 4</option>
-                                        <option>Quận 5</option>
-                                        <option>Quận 6</option>
-                                        <option>Quận 7</option>
-                                        <option>Quận 8</option>
-                                        <option>Quận 9</option>
-                                        <option>Quận 10</option>
-                                        <option>Quận 11</option>
-                                        <option>Quận 12</option>
-                                        <option>Quận Thủ đức</option>
-                                        <option>Quận Tân Phú</option>
-                                        <option>Quận Tân Bình</option>
-                                        <option>Quận Phú Thuận</option>
-                                        <option>Quận Phú Thuận</option>
-                                        <option>Quận Gò Vấp</option>
-                                        <option>Quận Bình Thạnh</option>
-                                        <option>Huyện Bình Chánh</option>
-                                        <option>Huyện Nhà Bè</option>
-                                        <option>Huyện Hóc Môn</option>
-                                    </select>
-                                </div>
-                                <div class="item-in4">
-                                    <span></span>
-                                    <input type="submit" value="Cập nhật">
-                                </div>
-
+                                            echo '<label for="nam">';
+                                            echo '    <input type="radio" checked id="nam" name="GioiTinh" value="nam" >';
+                                            echo '    <span>Nam</span>';
+                                            echo '</label>';
+                                            echo '<label for="Nu">';
+                                            echo '    <input type="radio" id="Nu" name="GioiTinh" value="nu">';
+                                            echo '    <span>Nữ</span>';
+                                            echo '</label>';
+                                        } else {
+                                            echo '<label for="nam">';
+                                            echo '    <input type="radio"  id="nam" name="GioiTinh" value="nam">';
+                                            echo '    <span>Nam</span>';
+                                            echo '</label>';
+                                            echo '<label for="Nu">';
+                                            echo '    <input type="radio" checked id="Nu" name="GioiTinh" value="nu">';
+                                            echo '    <span>Nữ</span>';
+                                            echo '</label>';
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Địa chỉ</span>
+                                        <input type="text" name="address" value="<?php echo $userAll[0]['address'] ?>">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span></span>
+                                        <button type="submit" class="btn btn-danger" name="useraction" value="updateCustomer">Cập nhật</button>
+                                    </div>
+                                </form>
                             </div>
                             <div role="tabpanel" class="tab-pane" id="DH">
                                 <h3>Đơn hàng của tôi</h3>
@@ -181,70 +141,184 @@
                                 <ul class="nav-tabs nav navDH" role="tablist">
                                     <li role="presentation" class="active"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
                                     <li role="presentation"><a href="#Reply" role="tab" data-toggle="tab">Chờ xác nhận</a></li>
-                                    <li role="presentation"><a href="#Replied" role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
-                                    <li role="presentation"><a href="#GH" a role="tab" data-toggle="tab">Đang giao</a></li>
-                                    <li role="presentation"><a href="#DaGiao" role="tab" data-toggle="tab">Đã giao</a></li>
-                                    <li role="presentation"><a href="#Ca" role="tab" data-toggle="tab">Đã hủy</a></li>
+                                    <li role="presentation"><a href="#Replied" role="tab" data-toggle="tab">Đã xác nhận</a></li>
+                                    <li role="presentation"><a href="#GH" role="tab" data-toggle="tab">Đã hủy</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="All">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">Mã hóa đơn</th>
+                                                            <th scope="col">Tên sản phẩm</th>
+                                                            <th scope="col">Tình trạng</th>
+                                                            <th scope="col">Ngày đặt đơn</th>
+                                                            <th scope="col">Ngày duyệt đơn</th>
+                                                            <th scope="col">Giá</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodytable">
+                                                        <?php
+                                                        $customer_id = $_SESSION['account_id'];
+                                                        $id = ["id" => $customer_id];
+                                                        $orderItem = $order->getAllOrder($id);
+                                                        foreach ($orderItem as $key =>  $item) {
+                                                            echo '<tr>';
+                                                            echo '    <td>' . ++$key . '</td>';
+                                                            echo '    <td>' . $item['orderid'] . '</td>';
+                                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                                            if ($item['state'] === "0") {
+                                                                echo '    <td class="text-danger">Pending</td>';
+                                                            } else if ($item['state'] === "1") {
+                                                                echo '    <td class="text-success">Conformed</td>';
+                                                            } else {
+                                                                echo '    <td class="text-secondary">Denied</td>';
+                                                            }
+                                                            echo '    <td>' . $item['order_date'] . '</td>';
+                                                            echo '    <td>' . $item['conform_order_date'] . '</td>';
+                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane " id="Reply">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">Mã hóa đơn</th>
+                                                            <th scope="col">Tên sản phẩm</th>
+                                                            <th scope="col">Tình trạng</th>
+                                                            <th scope="col">Ngày đặt đơn</th>
+                                                            <th scope="col">Giá</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodytable">
+                                                        <?php
+                                                        $customer_id = $_SESSION['account_id'];
+                                                        $id = ["id" => $customer_id];
+                                                        $orderItem = $order->getPendingOrder($id);
+                                                        foreach ($orderItem as $key =>  $item) {
+                                                            echo '<tr>';
+                                                            echo '    <td>' . ++$key . '</td>';
+                                                            echo '    <td>' . $item['orderid'] . '</td>';
+                                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                                            if ($item['state'] === "0") {
+                                                                echo '    <td class="text-danger">Pending</td>';
+                                                            } else if ($item['state'] === "1") {
+                                                                echo '    <td class="text-success">Conformed</td>';
+                                                            } else {
+                                                                echo '    <td class="text-secondary">Denied</td>';
+                                                            }
+                                                            echo '    <td>' . $item['order_date'] . '</td>';
+                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane " id="Replied">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">Mã hóa đơn</th>
+                                                            <th scope="col">Tên sản phẩm</th>
+                                                            <th scope="col">Tình trạng</th>
+                                                            <th scope="col">Ngày đặt đơn</th>
+                                                            <th scope="col">Ngày duyệt đơn</th>
+                                                            <th scope="col">Giá</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodytable">
+                                                        <?php
+                                                        $customer_id = $_SESSION['account_id'];
+                                                        $id = ["id" => $customer_id];
+                                                        $orderItem = $order->getConformOrder($id);
+                                                        foreach ($orderItem as $key =>  $item) {
+                                                            echo '<tr>';
+                                                            echo '    <td>' . ++$key . '</td>';
+                                                            echo '    <td>' . $item['orderid'] . '</td>';
+                                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                                            if ($item['state'] === "0") {
+                                                                echo '    <td class="text-danger">Pending</td>';
+                                                            } else if ($item['state'] === "1") {
+                                                                echo '    <td class="text-success">Conformed</td>';
+                                                            } else {
+                                                                echo '    <td class="text-secondary">Denied</td>';
+                                                            }
+                                                            echo '    <td>' . $item['order_date'] . '</td>';
+                                                            echo '    <td>' . $item['conform_order_date'] . '</td>';
+                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane " id="GH">
                                         <div class="DonHang">
                                             <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane " id="DaGiao">
-                                        <div class="DonHang">
-                                            <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane " id="Ca">
-                                        <div class="DonHang">
-                                            <div class="ImgGioHang">
-                                                <img src="/img/tk-shopping-img.png" alt="">
-                                                <span>Bạn chưa có đơn hàng nào</span>
-                                                <input type="button" value="Tiếp tục mua sắm" onclick="window.location.href = '/Index.html';">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">Mã hóa đơn</th>
+                                                            <th scope="col">Tên sản phẩm</th>
+                                                            <th scope="col">Tình trạng</th>
+                                                            <th scope="col">Ngày đặt đơn</th>
+                                                            <th scope="col">Ngày duyệt đơn</th>
+                                                            <th scope="col">Giá</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbodytable">
+                                                        <?php
+                                                        $customer_id = $_SESSION['account_id'];
+                                                        $id = ["id" => $customer_id];
+                                                        $orderItem = $order->getDeniedOrder($id);
+                                                        foreach ($orderItem as $key =>  $item) {
+                                                            echo '<tr>';
+                                                            echo '    <td>' . ++$key . '</td>';
+                                                            echo '    <td>' . $item['orderid'] . '</td>';
+                                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                                            if ($item['state'] === "0") {
+                                                                echo '    <td class="text-danger">Pending</td>';
+                                                            } else if ($item['state'] === "1") {
+                                                                echo '    <td class="text-success">Conformed</td>';
+                                                            } else {
+                                                                echo '    <td class="text-secondary">Denied</td>';
+                                                            }
+                                                            echo '    <td>' . $item['order_date'] . '</td>';
+                                                            echo '    <td>' . $item['conform_order_date'] . '</td>';
+                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '</tr>';
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="Seen"">
-                                
+                            <div role="tabpanel" class="tab-pane" id="Seen">
+
                             </div>
                             <div role=" tabpanel" class="tab-pane " id="Liked">
                                 <table class="table">
@@ -263,9 +337,9 @@
                                         $likedcar = $productlistliked->likeCar_list($account_id);
                                         foreach ($likedcar as $key =>  $item) {
                                             echo '<tr>';
-                                            echo '    <td>' . $key++ . '</td>';
+                                            echo '    <td>' . ++$key . '</td>';
                                             echo '    <td>' . $item['car_name'] . '</td>';
-                                            echo '    <td ><img src="' . $item['car_img'] . '" width="200" height="100" alt=""></td>';
+                                            echo '    <td ><img src="' . $item['car_img'] . '" width="130" height="80" alt=""></td>';
                                             echo '    <td>' . $item['price'] . '.000đ</td>';
                                             echo '</tr>';
                                         }
