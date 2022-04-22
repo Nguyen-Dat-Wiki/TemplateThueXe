@@ -33,6 +33,7 @@
                     $account_id = $_POST["account_id"];
                     $car_id = $_POST['car_id'];
                     $money = $_POST['moneycart'];
+                    echo $money.$car_id;
                     $mySQLCon->connect();
                     if ($account_id == "") {
                         header('Location: ../view/signup.php');
@@ -41,13 +42,14 @@
                         $arr_param = array("customer_id" => $account_id);
                         $mySQLCon->insertData($sql, $arr_param);
 
-                        $sqlID = 'SELECT id from dack_carrent.order where dack_carrent.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
+                        $sqlID = 'SELECT id from dack_carrent3.order where dack_carrent3.order.customer_id=' . $account_id . ' order by id DESC LIMIT 1;';
                         $order_id = $mySQLCon->getAllData($sqlID);
-
-                        $sql = "INSERT INTO order_detail(car_id,order_id,total_price) value (:car_id,:order_id,:total_price)";
+                        
+                        $sql = "INSERT INTO order_detail(car_id,order_id,total_price) values (:car_id,:order_id,:total_price)";
                         $arr = array("car_id" => $car_id, "order_id" => $order_id[0]['id'], "total_price" => $money);
                         $mySQLCon->insertData($sql, $arr);
-                        header('Location: ../view/index.php');
+
+                        header('Location: ../view/product.php');
                     }
                     break;
                 case "create":
