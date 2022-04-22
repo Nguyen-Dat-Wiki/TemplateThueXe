@@ -103,10 +103,10 @@
                                     <div class="item-in4">
                                         <span>Giới tính</span>
                                         <?php
-                                        if ($userAll[0]['gender'] == 'nam') {
+                                        if ($userAll[0]['gender'] == 'Nam') {
 
                                             echo '<label for="nam">';
-                                            echo '    <input type="radio" checked id="nam" name="GioiTinh" value="nam" >';
+                                            echo '    <input type="radio" checked id="Nam" name="GioiTinh" value="Nam" >';
                                             echo '    <span>Nam</span>';
                                             echo '</label>';
                                             echo '<label for="Nu">';
@@ -115,7 +115,7 @@
                                             echo '</label>';
                                         } else {
                                             echo '<label for="nam">';
-                                            echo '    <input type="radio"  id="nam" name="GioiTinh" value="nam">';
+                                            echo '    <input type="radio"  id="Nam" name="GioiTinh" value="Nam">';
                                             echo '    <span>Nam</span>';
                                             echo '</label>';
                                             echo '<label for="Nu">';
@@ -179,7 +179,7 @@
                                                             }
                                                             echo '    <td>' . $item['order_date'] . '</td>';
                                                             echo '    <td>' . $item['conform_order_date'] . '</td>';
-                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '    <td>' . number_format($item['total_price']) . '.000đ</td>';
                                                             echo '</tr>';
                                                         }
                                                         ?>
@@ -220,7 +220,7 @@
                                                                 echo '    <td class="text-secondary">Denied</td>';
                                                             }
                                                             echo '    <td>' . $item['order_date'] . '</td>';
-                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '    <td>' . number_format($item['total_price']) . '.000đ</td>';
                                                             echo '</tr>';
                                                         }
                                                         ?>
@@ -263,7 +263,7 @@
                                                             }
                                                             echo '    <td>' . $item['order_date'] . '</td>';
                                                             echo '    <td>' . $item['conform_order_date'] . '</td>';
-                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '    <td>' .number_format($item['total_price']) . '.000đ</td>';
                                                             echo '</tr>';
                                                         }
                                                         ?>
@@ -306,7 +306,7 @@
                                                             }
                                                             echo '    <td>' . $item['order_date'] . '</td>';
                                                             echo '    <td>' . $item['conform_order_date'] . '</td>';
-                                                            echo '    <td>' . $item['total_price'] . '.000đ</td>';
+                                                            echo '    <td>' . number_format($item['total_price']) . '.000đ</td>';
                                                             echo '</tr>';
                                                         }
                                                         ?>
