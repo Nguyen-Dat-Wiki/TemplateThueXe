@@ -3,7 +3,7 @@
 
 <HEAD>
     <?php
-        include '../layouts/header.php';
+    include '../layouts/header.php';
     ?>
 
 
@@ -13,10 +13,9 @@
 <body>
 
     <?php
-        include '../layouts/menu.php';
+    include '../layouts/menu.php';
     ?>
-    <div class="page-heading about-heading header-text"
-        style="background-image: url(../assets/img/banner_product.png);">
+    <div class="page-heading about-heading header-text" style="background-image: url(../assets/img/banner_product.png);">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -44,18 +43,18 @@
         </div>
     </section>
     <?php
-        include '../model/product.php';
-        $user = new Product();
+    include '../model/product.php';
+    $user = new Product();
 
-        $arr = array("id"=>$_SESSION['account_id']);
-        $userAll = $user->getAllUser2($arr);
+    $arr = array("id" => $_SESSION['account_id']);
+    $userAll = $user->getAllUser2($arr);
     ?>
     <div class="products">
         <div class="container">
             <div class="row">
                 <div class="Profile-Form container">
                     <div class="Profile-SideBar col-md-3">
-                        <div class="tabHiden" >
+                        <div class="tabHiden">
                             <div class="In4">
                                 <i class="fa fa-user-circle"></i>
                                 <div class="namein4">
@@ -65,14 +64,14 @@
                             </div>
                             <ul class="nav nav-tabs tab-nav" role="tablist">
                                 <li role="presentation" class="active"><a href="#Profile" role="tab" data-toggle="tab"> <i class="fa fa-user-o"></i> Thông tin tài khoản</a></li>
-                                <li role="presentation"><a href="#DH"  role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
-                                <li role="presentation"><a href="#Seen"  role="tab" data-toggle="tab" ><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
+                                <li role="presentation"><a href="#DH" role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
+                                <li role="presentation"><a href="#Seen" role="tab" data-toggle="tab"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
                                 <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
-                                <li role="presentation"><a href="#MuaSau"  role="tab" data-toggle="tab"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
-                                <li role="presentation"><a href="#DanhGia"  role="tab" data-toggle="tab"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
-                                <li role="presentation"><a href="#Commnet"  role="tab" data-toggle="tab"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
-                                <li role="presentation"><a href="#Change"  role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
-                                <li role="presentation"><a href="#Out"  role="tab" data-toggle="tab"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
+                                <li role="presentation"><a href="#MuaSau" role="tab" data-toggle="tab"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
+                                <li role="presentation"><a href="#DanhGia" role="tab" data-toggle="tab"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
+                                <li role="presentation"><a href="#Commnet" role="tab" data-toggle="tab"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
+                                <li role="presentation"><a href="#Change" role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
+                                <li role="presentation"><a href="#Out" role="tab" data-toggle="tab"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
                             </ul>
                         </div>
                     </div>
@@ -81,7 +80,7 @@
                         <div class="tab-content">
 
                             <div role="tabpanel" class="tab-pane active" id="Profile">
-                                
+
                                 <h3>Thông tin tài khoản</h3>
                                 <hr>
                                 <div class="item-in4">
@@ -99,27 +98,26 @@
                                 <div class="item-in4">
                                     <span>Giới tính</span>
                                     <?php
-                                        if($userAll[0]['gender']=='Nam'){
+                                    if ($userAll[0]['gender'] == 'Nam') {
 
-                                            echo '<label for="Nam">';
-                                            echo '    <input type="radio" checked id="Nam" name="GioiTinh">';
-                                            echo '    <span>Nam</span>';
-                                            echo '</label>';
-                                            echo '<label for="Nu">';
-                                            echo '    <input type="radio" id="Nu" name="GioiTinh">';
-                                            echo '    <span>Nữ</span>';
-                                            echo '</label>';
-                                        }
-                                        else {
-                                            echo '<label for="Nam">';
-                                            echo '    <input type="radio"  id="Nam" name="GioiTinh">';
-                                            echo '    <span>Nam</span>';
-                                            echo '</label>';
-                                            echo '<label for="Nu">';
-                                            echo '    <input type="radio" checked id="Nu" name="GioiTinh">';
-                                            echo '    <span>Nữ</span>';
-                                            echo '</label>';
-                                        }
+                                        echo '<label for="Nam">';
+                                        echo '    <input type="radio" checked id="Nam" name="GioiTinh">';
+                                        echo '    <span>Nam</span>';
+                                        echo '</label>';
+                                        echo '<label for="Nu">';
+                                        echo '    <input type="radio" id="Nu" name="GioiTinh">';
+                                        echo '    <span>Nữ</span>';
+                                        echo '</label>';
+                                    } else {
+                                        echo '<label for="Nam">';
+                                        echo '    <input type="radio"  id="Nam" name="GioiTinh">';
+                                        echo '    <span>Nam</span>';
+                                        echo '</label>';
+                                        echo '<label for="Nu">';
+                                        echo '    <input type="radio" checked id="Nu" name="GioiTinh">';
+                                        echo '    <span>Nữ</span>';
+                                        echo '</label>';
+                                    }
                                     ?>
                                 </div>
                                 <div class="item-in4">
@@ -145,7 +143,7 @@
                                 </div>
                                 <div class="item-in4">
                                     <span>Quận / huyện</span>
-                                    <select class="select1" name="select" >
+                                    <select class="select1" name="select">
                                         <option selected="selected">Quận huyện </option>
                                         <option>Quận 1</option>
                                         <option>Quận 2</option>
@@ -175,18 +173,18 @@
                                     <span></span>
                                     <input type="submit" value="Cập nhật">
                                 </div>
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane" id="DH">
                                 <h3>Đơn hàng của tôi</h3>
                                 <hr>
                                 <ul class="nav-tabs nav navDH" role="tablist">
                                     <li role="presentation" class="active"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
-                                    <li role="presentation"><a href="#Reply"  role="tab" data-toggle="tab">Chờ xác nhận</a></li>
-                                    <li role="presentation"><a href="#Replied"  role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
+                                    <li role="presentation"><a href="#Reply" role="tab" data-toggle="tab">Chờ xác nhận</a></li>
+                                    <li role="presentation"><a href="#Replied" role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
                                     <li role="presentation"><a href="#GH" a role="tab" data-toggle="tab">Đang giao</a></li>
-                                    <li role="presentation"><a href="#DaGiao"  role="tab" data-toggle="tab">Đã giao</a></li>
-                                    <li role="presentation"><a href="#Ca"  role="tab" data-toggle="tab">Đã hủy</a></li>
+                                    <li role="presentation"><a href="#DaGiao" role="tab" data-toggle="tab">Đã giao</a></li>
+                                    <li role="presentation"><a href="#Ca" role="tab" data-toggle="tab">Đã hủy</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="All">
@@ -248,43 +246,43 @@
                             <div role="tabpanel" class="tab-pane" id="Seen"">
                                 
                             </div>
-                            <div role="tabpanel" class="tab-pane " id="Liked">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Tên sản phẩm</th>
-                                    <th scope="col">Hình ảnh</th>
-                                    <th scope="col">Giá</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="tbodytable">
-                                    <?php
+                            <div role=" tabpanel" class="tab-pane " id="Liked">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbodytable">
+                                        <?php
                                         $account_id = $_SESSION['account_id'];
                                         $productlistliked = new Product();
                                         $likedcar = $productlistliked->likeCar_list($account_id);
                                         foreach ($likedcar as $key =>  $item) {
-                                                echo '<tr>';
-                                                echo '    <td>'.$key++.'</td>';
-                                                echo '    <td>'.$item['car_name'].'</td>';
-                                                echo '    <td ><img src="'.$item['car_img'].'" width="200" height="100" alt=""></td>';
-                                                echo '    <td>'.$item['price'].'.000đ</td>';
-                                                echo '</tr>';
+                                            echo '<tr>';
+                                            echo '    <td>' . $key++ . '</td>';
+                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                            echo '    <td ><img src="' . $item['car_img'] . '" width="200" height="100" alt=""></td>';
+                                            echo '    <td>' . $item['price'] . '.000đ</td>';
+                                            echo '</tr>';
                                         }
-                                    ?>
-                                </tbody>
+                                        ?>
+                                    </tbody>
                                 </table>
-                                
+
                                 </table>
                             </div>
                             <div role="tabpanel" class="tab-pane " id="MuaSau">
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="DanhGia">
-                            
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Commnet">
-                                
+
                             </div>
                             <div role="tabpanel" class="tab-pane " id="Change">
                                 <h3 sty>Thay đổi mật khẩu</h3>
@@ -292,7 +290,7 @@
                                 <form action="../controller/usercontroller.php?action=pass" method="POST" id="password">
                                     <div class="item-in4">
                                         <span>Mật khẩu hiện tại</span>
-                                        <input type="password" class="pass" name="passnow" >
+                                        <input type="password" class="pass" name="passnow">
                                     </div>
                                     <div class="item-in4">
                                         <span>Mật khẩu mới</span>
@@ -318,11 +316,11 @@
     </div>
 
 
-    <?php 
-        
-            include '../layouts/footer.php';
-            include '../layouts/js.php';
-         ?>
+    <?php
+
+    include '../layouts/footer.php';
+    include '../layouts/js.php';
+    ?>
 
     <script src="../assets/vendor/bootstrap/js/tab.js"></script>
 </body>
