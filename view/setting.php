@@ -41,12 +41,18 @@
 
         </div>
     </section>
+    <?php
+    include '../model/product.php';
+    $user = new Product();
 
+    $arr = array("id" => $_SESSION['account_id']);
+    $userAll = $user->getAllUser2($arr);
+    ?>
     <div class="products">
         <div class="container">
             <div class="row">
                 <div class="Profile-Form container">
-                    <div class="Profile-SideBar col-lg-3">
+                    <div class="Profile-SideBar col-md-3">
                         <div class="tabHiden">
                             <div class="In4">
                                 <i class="fa fa-user-circle"></i>
@@ -58,13 +64,13 @@
                             <ul class="nav nav-tabs tab-nav" role="tablist">
                                 <li role="presentation" class="active"><a href="#Profile" role="tab" data-toggle="tab"> <i class="fa fa-user-o"></i> Thông tin tài khoản</a></li>
                                 <li role="presentation"><a href="#DH" role="tab" data-toggle="tab"> <i class="fa fa-list"></i>Đơn hàng</a></li>
-                                <li role="presentation"><a href="#Seen" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
-                                <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
-                                <li role="presentation"><a href="#MuaSau" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
-                                <li role="presentation"><a href="#DanhGia" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
-                                <li role="presentation"><a href="#Commnet" role="tab" data-toggle="tab" onclick="Chuyentrang();"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
+                                <li role="presentation"><a href="#Seen" role="tab" data-toggle="tab"><i class="fa fa-eye"></i>Sản phẩm đã xem</a></li>
+                                <li role="presentation"><a href="#Liked" a role="tab" data-toggle="tab"><i class="fa fa-heart-o"></i>Sản phẩm đã thích</a></li>
+                                <li role="presentation"><a href="#MuaSau" role="tab" data-toggle="tab"><i class="fa fa-archive"></i>Sản phẩm mua sau</a></li>
+                                <li role="presentation"><a href="#DanhGia" role="tab" data-toggle="tab"><i class="fa fa-star-o"></i>Đánh giá của tôi</a></li>
+                                <li role="presentation"><a href="#Commnet" role="tab" data-toggle="tab"><i class="fa fa-comment-o"></i>Bình luận của tôi</a></li>
                                 <li role="presentation"><a href="#Change" role="tab" data-toggle="tab"><i class="fa fa-lock"></i>Thay đổi mật khẩu</a></li>
-                                <li role="presentation"><a href="#Out" role="tab" data-toggle="tab" onclick="Out();"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
+                                <li role="presentation"><a href="#Out" role="tab" data-toggle="tab"><i class="fa fa-power-off"></i>Đăng xuất tài khoản</a></li>
                             </ul>
                         </div>
                     </div>
@@ -115,7 +121,7 @@
                                 <h3>Đơn hàng của tôi</h3>
                                 <hr>
                                 <ul class="nav-tabs nav navDH" role="tablist">
-                                    <li role="presentation"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
+                                    <li role="presentation" class="active"><a href="#All" role="tab" data-toggle="tab">Tất cả</a></li>
                                     <li role="presentation"><a href="#Reply" role="tab" data-toggle="tab">Chờ xác nhận</a></li>
                                     <li role="presentation"><a href="#Replied" role="tab" data-toggle="tab">Chờ lấy hàng</a></li>
                                     <li role="presentation"><a href="#GH" a role="tab" data-toggle="tab">Đang giao</a></li>
@@ -203,8 +209,34 @@
                                     }
                                 </script>
                             </div>
-                            <div role="tabpanel" class="tab-pane " id="Liked">
+                            <div role=" tabpanel" class="tab-pane " id="Liked">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">STT</th>
+                                            <th scope="col">Tên sản phẩm</th>
+                                            <th scope="col">Hình ảnh</th>
+                                            <th scope="col">Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbodytable">
+                                        <?php
+                                        $account_id = $_SESSION['account_id'];
+                                        $productlistliked = new Product();
+                                        $likedcar = $productlistliked->likeCar_list($account_id);
+                                        foreach ($likedcar as $key =>  $item) {
+                                            echo '<tr>';
+                                            echo '    <td>' . $key++ . '</td>';
+                                            echo '    <td>' . $item['car_name'] . '</td>';
+                                            echo '    <td ><img src="' . $item['car_img'] . '" width="200" height="100" alt=""></td>';
+                                            echo '    <td>' . $item['price'] . '.000đ</td>';
+                                            echo '</tr>';
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
 
+                                </table>
                             </div>
                             <div role="tabpanel" class="tab-pane " id="MuaSau">
 
@@ -218,37 +250,25 @@
                             <div role="tabpanel" class="tab-pane " id="Change">
                                 <h3 sty>Thay đổi mật khẩu</h3>
                                 <hr>
-                                <div class="item-in4">
-                                    <span>Mật khẩu hiện tại</span>
-                                    <input type="password" class="pass">
-                                    <span></span>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Mật khẩu mới</span>
-                                    <input type="password" class="pass">
-                                    <span></span>
-                                </div>
-                                <div class="item-in4">
-                                    <span>Nhập lại mật khẩu mới</span>
-                                    <input type="password" class="pass">
-                                    <span></span>
-                                </div>
-                                <div class="item-in4">
-                                    <span></span>
-                                    <input type="button" value="Đổi mật khẩu" id="changPass">
-                                    <span></span>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane " id="Out">
-                                <script>
-                                    function Out() {
-                                        localStorage.removeItem("username");
-                                        localStorage.removeItem("password");
-                                        localStorage.removeItem("username1");
-                                        localStorage.removeItem("password1");
-                                        window.location = "/index.html";
-                                    }
-                                </script>
+                                <form action="../controller/usercontroller.php?action=pass" method="POST" id="password">
+                                    <div class="item-in4">
+                                        <span>Mật khẩu hiện tại</span>
+                                        <input type="password" class="pass" name="passnow">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Mật khẩu mới</span>
+                                        <input type="password" class="pass" name="passnew">
+                                    </div>
+                                    <div class="item-in4">
+                                        <span>Nhập lại mật khẩu mới</span>
+                                        <input type="password" class="pass" name="checkpassnew">
+                                    </div>
+                                    <input type="text" name="account_id" hidden value="<?php echo $_SESSION['account_id'] ?>">
+                                    <div class="item-in4">
+                                        <span></span>
+                                        <input type="submit" value="Đổi mật khẩu" id="changPass">
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
