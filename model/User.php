@@ -10,7 +10,8 @@
  *
  * @author DELL
  */
-class User {
+class User
+{
 
     //put your code here
     private $username;
@@ -21,7 +22,8 @@ class User {
     private $role;
     private $avatar;
 
-    public function __construct($uname, $email, $pass, $sex, $prefer, $avatar, $role) {
+    public function __construct($uname, $email, $pass, $sex, $prefer, $avatar, $role)
+    {
         $this->username = $uname;
         $this->email = $email;
         $this->password = $pass;
@@ -31,70 +33,86 @@ class User {
         $this->role = $role;
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
         return $this->email;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->password;
     }
 
-    public function getSex() {
+    public function getSex()
+    {
         return $this->sex;
     }
 
-    public function getPrefer() {
+    public function getPrefer()
+    {
         return $this->prefer;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
         return $this->role;
     }
 
-    public function getAvatar() {
+    public function getAvatar()
+    {
         return $this->avatar;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username)
+    {
         $this->username = $username;
     }
 
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function setPassword($password) {
+    public function setPassword($password)
+    {
         $this->password = $password;
     }
 
-    public function setSex($sex) {
+    public function setSex($sex)
+    {
         $this->sex = $sex;
     }
 
-    public function setPrefer($prefer) {
+    public function setPrefer($prefer)
+    {
         $this->prefer = $prefer;
     }
 
-    public function setRole($role) {
+    public function setRole($role)
+    {
         $this->role = $role;
     }
 
-    public function setAvatar($avatar) {
+    public function setAvatar($avatar)
+    {
         $this->avatar = $avatar;
     }
 
-    public function editUser($sql, $arr_param) {
+    public function editUser($sql, $arr_param)
+    {
         $dbCon = new MySQLUtils();
         $dbCon->connect();
         $dbCon->editData($sql, $arr_param);
         $dbCon->disconnect();
     }
 
-    public function insertUser($arr_param) {
+    public function insertUser($arr_param)
+    {
         $sql = "INSERT INTO customer(username, email, password, sex, prefer, avatar, role) values(:username, :email, :password, :sex, :prefer, :avatar, :role)";
 
         $dbCon = new MySQLUtils();
@@ -103,7 +121,8 @@ class User {
         $dbCon->disconnect();
     }
 
-    public function deleteUser($arr_param) {
+    public function deleteUser($arr_param)
+    {
         $sql = "DELETE FROM customer WHERE username = :username";
         $dbCon = new MySQLUtils();
         $dbCon->connect();
@@ -111,8 +130,9 @@ class User {
         $dbCon->disconnect();
     }
 
-    public function getAllUser() {
-         $sql = "SELECT * FROM customer";
+    public function getAllUser()
+    {
+        $sql = "SELECT * FROM customer";
         $arrUser = array();
         $dbCon = new MySQLUtils();
         $dbCon->connect();
@@ -120,9 +140,10 @@ class User {
         $dbCon->disconnect();
         return $arrUser;
     }
-    
 
-    public function updateUser($arr_param) {
+
+    public function updateUser($arr_param)
+    {
         $sql = "UPDATE customer SET password=:password where id = :id";
         $dbCon = new MySQLUtils();
         $dbCon->connect();
@@ -130,7 +151,17 @@ class User {
         $dbCon->disconnect();
     }
 
-    public function getUser($arr = array()) {
+    public function updateInfoUser($arr_param)
+    {
+        $sql = "UPDATE customer SET fullname = :fullname, email = :email, phonenumber = :phonenumber, gender = :gender, address = :address where id = :id";
+        $dbCon = new MySQLUtils();
+        $dbCon->connect();
+        $dbCon->updateData($sql, $arr_param);
+        $dbCon->disconnect();
+    }
+
+    public function getUser($arr = array())
+    {
         $sql = "SELECT id,username,email FROM customer where username = :username";
         $user = array();
         $dbCon = new MySQLUtils();
@@ -139,10 +170,11 @@ class User {
         $dbCon->disconnect();
         return $user;
     }
-    
-    
-     private function getUserByUserName($sql, $arr = array()) {
-      
+
+
+    private function getUserByUserName($sql, $arr = array())
+    {
+
         $user = array();
         $dbCon = new MySQLUtils();
         $dbCon->connect();
@@ -151,7 +183,8 @@ class User {
         return $user;
     }
 
-    public function isUser($uname, $pass) {
+    public function isUser($uname, $pass)
+    {
         $username = "";
         $password = "";
         $arrUsers = array();
@@ -170,14 +203,15 @@ class User {
                     session_start();
                 }
                 $_SESSION["is_login"] = true;
-                $_SESSION["account_id"]= $id;
+                $_SESSION["account_id"] = $id;
                 $_SESSION["username_login"] = $uname;
                 return true;
             }
         }
         return false;
     }
-    public function exitsUser($uname) {
+    public function exitsUser($uname)
+    {
         $username = "";
         $arrUsers = array();
         $sql = "SELECT username FROM customer where username = :username";
@@ -202,18 +236,17 @@ class User {
     {
         if ($pas != $confirm_pas) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
-    public function changepass($passnow, $passnew,$checkpassnew, $id)
+    public function changepass($passnow, $passnew, $checkpassnew, $id)
     {
         $user = array();
         $sql = "SELECT password FROM customer where id=:id";
         $arr_param = array("id" => $id);
         $user = $this->getUserByUserName($sql, $arr_param);
-        if($user[0]['password'] == $passnow){
-            if($passnew == $checkpassnew){
-                $arr = array("password" => $passnew, "id"=>$id);
+        if ($user[0]['password'] == $passnow) {
+            if ($passnew == $checkpassnew) {
+                $arr = array("password" => $passnew, "id" => $id);
                 $this->updateUser($arr);
                 return true;
             }
@@ -221,5 +254,4 @@ class User {
         }
         return false;
     }
-
 }
