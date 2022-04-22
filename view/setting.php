@@ -106,7 +106,6 @@
                                     <span></span>
                                     <input type="button" value="Cập nhật">
                                 </div>
-
                             </div>
                             <?php
                             include("../model/product.php");
