@@ -113,10 +113,6 @@
                                     <input type="button" value="Cập nhật">
                                 </div>
                             </div>
-                            <?php
-                            include("../model/product.php");
-                            $product = new Product();
-                            ?>
                             <div role="tabpanel" class="tab-pane" id="DH">
                                 <h3>Đơn hàng của tôi</h3>
                                 <hr>
